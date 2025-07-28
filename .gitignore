@@ -13,3 +13,4 @@ Example.xcworkspace
 node_modules
 *.iml
 xcuserdata
+lib

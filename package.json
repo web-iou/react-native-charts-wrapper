@@ -42,9 +42,8 @@
     "react-native-charts-wrapper.podspec",
     "ios/ReactNativeCharts/ReactNativeCharts.xcodeproj/project.pbxproj"
   ],
-  "dependencies": {},
-  "peerDependencies": {
-    "react": ">=16.0.0"
+  "dependencies": {
+    "react-native": "0.78.2"
   },
   "react-native-builder-bob": {
     "output": "lib",
@@ -60,6 +59,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react": "19.0.0",
     "react-native-builder-bob": "^0.40.13"
   },
   "types": "./lib/index.d.ts"

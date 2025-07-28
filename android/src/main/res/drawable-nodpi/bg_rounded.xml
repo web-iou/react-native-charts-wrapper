@@ -1,10 +1,22 @@
-<!-- res/drawable/bg_rounded_ripple.xml -->
-<ripple xmlns:android="http://schemas.android.com/apk/res/android"
-    android:color="#20000000">
-    <item>
+<!-- res/drawable/bg_rounded_shadow.xml -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 主阴影 - 更明显的效果 -->
+    <item
+        android:left="0dp"
+        android:right="0dp"
+        android:top="2dp"
+        android:bottom="8dp">
         <shape android:shape="rectangle">
-            <corners android:radius="4dp" />
-            <solid android:color="#FFFFFF" />
+            <solid android:color="#40000000"/> <!-- 25% 透明度，更明显 -->
+            <corners android:radius="4dp"/>
         </shape>
     </item>
-</ripple>
+
+    <!-- 背景 -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#FFFFFF"/> <!-- 背景颜色 -->
+            <corners android:radius="4dp"/> <!-- 圆角半径 -->
+        </shape>
+    </item>
+</layer-list>

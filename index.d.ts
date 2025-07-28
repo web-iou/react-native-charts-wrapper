@@ -445,7 +445,9 @@ export type ChartChangeEvent = NativeSyntheticEvent<{
 export interface LineChartProps extends BarLineChartBase {
   data: LineData;
 }
-export class LineChart extends Component<LineChartProps> {}
+export class LineChart extends Component<LineChartProps> {
+  fitScreen(): void;
+}
 
 export interface BarValue {
   x?: number | undefined;
@@ -487,7 +489,7 @@ export interface BarChartProps extends BarLineChartBase {
   drawValueAboveBar?: boolean | undefined;
   drawBarShadow?: boolean | undefined;
   highlightFullBarEnabled?: boolean | undefined;
-
+  radius?: number;
   data: BarData;
 }
 export class BarChart extends Component<BarChartProps> {}
