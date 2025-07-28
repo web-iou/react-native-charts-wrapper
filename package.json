@@ -18,6 +18,18 @@
     "ios",
     "Charts"
   ],
+  "main": "./lib/module/index.js",
+  "exports": {
+    ".": {
+      "source": "./src/index.js",
+      "default": "./lib/module/index.js",
+      "types": "./lib/index.d.ts"
+    },
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "prepare": "bob build && cp index.d.ts lib/index.d.ts"
+  },
   "files": [
     "android/src",
     "android/build.gradle",
@@ -30,11 +42,25 @@
     "react-native-charts-wrapper.podspec",
     "ios/ReactNativeCharts/ReactNativeCharts.xcodeproj/project.pbxproj"
   ],
-  "dependencies": {
-    "deprecated-react-native-prop-types": "^2.3.0",
-    "prop-types": "^15.8.1"
-  },
+  "dependencies": {},
   "peerDependencies": {
     "react": ">=16.0.0"
-  }
+  },
+  "react-native-builder-bob": {
+    "output": "lib",
+    "source": "src",
+    "targets": [
+      [
+        "module",
+        {
+          "esm": true,
+          "sourceMaps": false
+        }
+      ]
+    ]
+  },
+  "devDependencies": {
+    "react-native-builder-bob": "^0.40.13"
+  },
+  "types": "./lib/index.d.ts"
 }

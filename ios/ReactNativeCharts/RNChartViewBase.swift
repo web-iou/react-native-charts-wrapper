@@ -475,12 +475,7 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
             marker.chartView = chart
 
         default:
-            let marker = BalloonMarker(
-                color: RCTConvert.uiColor(json["markerColor"].intValue),
-                font: markerFont,
-                textColor: RCTConvert.uiColor(json["textColor"].intValue),
-                textAlign: RCTConvert.nsTextAlignment(json["textAlign"].stringValue)
-            )
+        let marker = DGMarkerView(frame: CGRect(x: 0, y: 0, width: 132, height: 77)) 
             chart.marker = marker
             marker.chartView = chart
         }
@@ -578,7 +573,11 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
 
     func onAfterDataSetChanged() {
     }
-
+    override open func layoutSubviews() {
+        super.layoutSubviews()
+        chart.frame=self.bounds
+    }
+    
     override open func didSetProps(_ changedProps: [String]!) {
         super.didSetProps(changedProps)
         chart.notifyDataSetChanged()

@@ -1,11 +1,8 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {
   requireNativeComponent,
-  View
 } from 'react-native';
 
-import BarLineChartBase from './BarLineChartBase';
-import {scatterData} from './ChartDataConfig';
 import MoveEnhancer from './MoveEnhancer'
 import ScaleEnhancer from "./ScaleEnhancer";
 import HighlightEnhancer from "./HighlightEnhancer";
@@ -25,11 +22,7 @@ class ScatterChart extends React.Component {
   }
 }
 
-ScatterChart.propTypes = {
-  ...BarLineChartBase.propTypes,
 
-  data: scatterData
-};
 
 var RNScatterChart = requireNativeComponent('RNScatterChart', ScatterChart, {
   nativeOnly: {onSelect: true, onChange: true}

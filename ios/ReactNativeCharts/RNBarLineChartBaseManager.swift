@@ -48,7 +48,7 @@ extension RNBarLineChartBaseManager {
 
   func _fitScreen(_ reactTag: NSNumber) {
     _bridge?.uiManager.addUIBlock { (uiManager: RCTUIManager?, viewRegistry:[NSNumber : UIView]?) in
-      let view: RNBarLineChartViewBase = viewRegistry![reactTag] as! RNBarLineChartViewBase;
+      let view: RNBarLineChartViewBase = uiManager?.view(forReactTag: reactTag) as! RNBarLineChartViewBase;
       (view.chart as! BarLineChartViewBase).fitScreen();
     }
   }

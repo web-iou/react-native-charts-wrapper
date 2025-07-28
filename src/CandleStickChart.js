@@ -1,12 +1,7 @@
-import PropTypes from 'prop-types';
-import React, {Component} from 'react';
 import {
   requireNativeComponent,
-  View
 } from 'react-native';
-
-import BarLineChartBase from './BarLineChartBase';
-import {candleData} from './ChartDataConfig';
+import React from 'react';
 import MoveEnhancer from './MoveEnhancer'
 import ScaleEnhancer from "./ScaleEnhancer";
 import HighlightEnhancer from "./HighlightEnhancer";
@@ -27,11 +22,7 @@ class CandleStickChart extends React.Component {
 
 }
 
-CandleStickChart.propTypes = {
-  ...BarLineChartBase.propTypes,
 
-  data: candleData
-};
 
 var RNCandleStickChart = requireNativeComponent('RNCandleStickChart', CandleStickChart, {
   nativeOnly: {onSelect: true, onChange: true}

@@ -1,12 +1,8 @@
-import PropTypes from 'prop-types';
-import React, {Component} from 'react';
+import React from 'react';
 import {
   requireNativeComponent,
-  View
 } from 'react-native';
 
-import BarLineChartBase from './BarLineChartBase';
-import {lineData} from './ChartDataConfig';
 import MoveEnhancer from './MoveEnhancer'
 import ScaleEnhancer from "./ScaleEnhancer";
 import HighlightEnhancer from "./HighlightEnhancer";
@@ -26,11 +22,7 @@ class LineChart extends React.Component {
   }
 }
 
-LineChart.propTypes = {
-  ...BarLineChartBase.propTypes,
 
-  data: lineData,
-};
 
 var RNLineChart = requireNativeComponent('RNLineChart', LineChart, {
   nativeOnly: {onSelect: true, onChange: true}

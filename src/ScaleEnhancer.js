@@ -1,4 +1,3 @@
-import React, {Component} from 'react';
 import { UIManager, findNodeHandle} from 'react-native';
 
 

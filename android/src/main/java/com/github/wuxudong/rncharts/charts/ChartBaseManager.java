@@ -26,7 +26,9 @@ import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.formatter.LargeValueFormatter;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
+import com.github.wuxudong.rncharts.R;
 import com.github.wuxudong.rncharts.data.DataExtract;
+import com.github.wuxudong.rncharts.markers.CustomMarker;
 import com.github.wuxudong.rncharts.markers.RNRectangleMarkerView;
 import com.github.wuxudong.rncharts.markers.RNCircleMarkerView;
 import com.github.wuxudong.rncharts.utils.BridgeUtils;
@@ -282,7 +284,7 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
 
                 break;
             default:
-                markerView = rectangleMarker(chart, propMap);
+                markerView = new CustomMarker(chart.getContext());
         }
 
         markerView.setChartView(chart);

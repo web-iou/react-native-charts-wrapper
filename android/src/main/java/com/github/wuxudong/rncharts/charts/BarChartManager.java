@@ -21,6 +21,9 @@ public class BarChartManager extends BarLineChartBaseManager<BarChart, BarEntry>
         BarChart barChart = new BarChart(reactContext);
         barChart.setOnChartValueSelectedListener(new RNOnChartValueSelectedListener(barChart));
         barChart.setOnChartGestureListener(new RNOnChartGestureListener(barChart));
+        barChart.setRenderer(
+                        new BaseBarChartRenderer(barChart, barChart.getAnimator(), barChart.getViewPortHandler()));
+        barChart.setHighlightFullBarEnabled(true);
         return barChart;
     }
 
@@ -33,7 +36,11 @@ public class BarChartManager extends BarLineChartBaseManager<BarChart, BarEntry>
     public void setDrawValueAboveBar(BarChart chart, boolean enabled) {
         chart.setDrawValueAboveBar(enabled);
     }
-
+    @ReactProp(name= "radius")
+    public void setRadius(BarChart chart, float radius) {
+        BaseBarChartRenderer.setRadius(radius);
+        chart.invalidate();
+    }
     @ReactProp(name = "drawBarShadow")
     public void setDrawBarShadow(BarChart chart, boolean enabled) {
         chart.setDrawBarShadow(enabled);
