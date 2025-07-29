@@ -95,7 +95,7 @@ public class CustomMarker extends MarkerView {
                 label.setTextColor(0xFF8C8C8C);
                 ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) label.getLayoutParams();
                 label.setTextSize(fontSize);
-                params.bottomMargin = (int) Utils.convertDpToPixel(4f);
+                params.bottomMargin = 4;
                 container.addView(label);
             }
         }
@@ -127,7 +127,7 @@ public class CustomMarker extends MarkerView {
                 linearLayout.setGravity(Gravity.CENTER_VERTICAL);
                 if (index != dataSet.size() - 1) {
                     ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) linearLayout.getLayoutParams();
-                    params.bottomMargin = (int) Utils.convertDpToPixel(4f);
+                    params.bottomMargin = 4;
                 }
 
                 View circle = new View(getContext());
