@@ -27,12 +27,11 @@ class BarDataExtract : DataExtract {
 
             barData.groupBars(fromX: fromX, groupSpace: groupSpace, barSpace: barSpace)
         }
-
-
     }
 
     override open func createDataSet(_ entries: [ChartDataEntry], label: String) -> ChartDataSetProtocol {
-        return BarChartDataSet(entries: entries, label: label)
+        let dataSet=BarChartDataSet(entries: entries, label: label)
+        return dataSet
     }
 
     override open func dataSetConfig(_ dataSet: ChartDataSetProtocol, config: JSON) {

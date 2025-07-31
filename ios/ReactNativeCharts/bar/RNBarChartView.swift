@@ -19,16 +19,14 @@ class RNBarChartView: RNBarChartViewBase {
     }
 
     override init(frame: CoreGraphics.CGRect) {
-
         self._chart = BarChartView(frame: frame)
         self._dataExtract = BarDataExtract()
-
         super.init(frame: frame)
-
+        _chart.renderer=BaseBarRenderer(dataProvider: _chart,animator: _chart.chartAnimator,viewPortHandler: _chart.viewPortHandler)
         self._chart.delegate = self
         self.addSubview(_chart)
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

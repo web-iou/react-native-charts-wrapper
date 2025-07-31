@@ -470,7 +470,11 @@ export interface BarDataset extends Dataset {
 
 export interface BarData {
   dataSets?: BarDataset[] | undefined;
-
+  /**
+   * @platform ios
+   * @description 圆角半径
+   */
+  radius?: number;
   config?:
     | {
         barWidth?: number | undefined;
@@ -489,6 +493,10 @@ export interface BarChartProps extends BarLineChartBase {
   drawValueAboveBar?: boolean | undefined;
   drawBarShadow?: boolean | undefined;
   highlightFullBarEnabled?: boolean | undefined;
+  /**
+   * @platform android
+   * @description 圆角半径
+   */
   radius?: number;
   data: BarData;
 }

@@ -23,18 +23,23 @@ open class DataExtract {
             let label = dataSet["label"].stringValue;
 
             if values != nil && label != nil {
-                let entries = createEntries(values);
-
-                let chartDataSet = createDataSet(entries, label: label);
+                let entries = createEntries(values)
+                let chartDataSet = createDataSet(entries, label: label)
 
                 if dataSet["config"].dictionary != nil {
                     dataSetConfig(chartDataSet, config: dataSet["config"])
                 }
 
-                chartData.append(chartDataSet);
+                if let barDataSet = chartDataSet as? BarChartDataSet,
+                   data["radius"].boolValue {
+                    let radius = CGFloat(data["radius"].intValue)
+                    barDataSet.roundedCorners = [.topLeft, .topRight]
+                    barDataSet.cornerRadius=radius
+                }
+                chartData.append(chartDataSet)
+
             }
         }
-
         if data["config"].dictionary != nil {
             dataConfig(chartData, config: data["config"])
         }

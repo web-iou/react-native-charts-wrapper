@@ -68,74 +68,52 @@ class DGMarkerView: MarkerView {
                 stackView.addArrangedSubview(labelView)
             }
         }
-
-        // 只在非bar类型的chartview下执行
-        if !(chartView is BarChartView) {
-            let xValue = entry.x
-            for i in 0..<data.dataSetCount {
-                if let dataSet = data.dataSet(at: i),
-                   dataSet.isVisible,
-                    let matchEntry = dataSet.entriesForXValue(xValue).first {
-
-                    let rowStackView = UIStackView()
-                    rowStackView.axis = .horizontal
-                    rowStackView.spacing = 4
-                    rowStackView.alignment = .center
-
-                    let dotView = UIView()
-                    dotView.backgroundColor = dataSet.colors.first
-                    dotView.layer.cornerRadius = 3
-                    dotView.translatesAutoresizingMaskIntoConstraints = false
-                    NSLayoutConstraint.activate([
-                        dotView.widthAnchor.constraint(equalToConstant: 6),
-                        dotView.heightAnchor.constraint(equalToConstant: 6)
-                    ])
-
-                    let label = UILabel()
-                    label.font = UIFont.boldSystemFont(ofSize: 11)
-                    label.textColor = UIColor(red: 38/255.0, green: 38/255.0, blue: 38/255.0, alpha: 1)
-                    label.text = "\(dataSet.label ?? "数据集 \(i)"): \(matchEntry.y)"
-
-                    rowStackView.addArrangedSubview(dotView)
-                    rowStackView.addArrangedSubview(label)
-
-                    stackView.addArrangedSubview(rowStackView)
+        var dataIndex = -1
+        if(chartView is BarChartView){
+            for i in  0..<data.dataSetCount{
+                let dataSet = data.dataSet(at: i)
+                let index = dataSet?.entryIndex(entry: entry)
+                if(!(index == -1)){
+                    dataIndex=index!
+                    break
                 }
             }
-        }else{
-            let xValue = entry.x
-            
-            for i in 0..<data.dataSetCount {
-                if let dataSet = data.dataSet(at: i),
-                   dataSet.isVisible,
-                   let matchEntry = dataSet.entriesForXValue(xValue).first {
-
-                    let rowStackView = UIStackView()
-                    rowStackView.axis = .horizontal
-                    rowStackView.spacing = 4
-                    rowStackView.alignment = .center
-
-                    let dotView = UIView()
-                    dotView.backgroundColor = dataSet.colors.first
-                    dotView.layer.cornerRadius = 3
-                    dotView.translatesAutoresizingMaskIntoConstraints = false
-                    NSLayoutConstraint.activate([
-                        dotView.widthAnchor.constraint(equalToConstant: 6),
-                        dotView.heightAnchor.constraint(equalToConstant: 6)
-                    ])
-
-                    let label = UILabel()
-                    label.font = UIFont.boldSystemFont(ofSize: 11)
-                    label.textColor = UIColor(red: 38/255.0, green: 38/255.0, blue: 38/255.0, alpha: 1)
-                    label.text = "\(dataSet.label ?? "数据集 \(i)"): \(matchEntry.y)"
-
-                    rowStackView.addArrangedSubview(dotView)
-                    rowStackView.addArrangedSubview(label)
-
-                    stackView.addArrangedSubview(rowStackView)
+        }
+        let xValue = entry.x
+        for i in 0..<data.dataSetCount {
+            if let dataSet = data.dataSet(at: i),
+               dataSet.isVisible{
+                let matchEntry:ChartDataEntry
+                if(chartView is BarChartView){
+                    matchEntry = dataSet.entryForIndex(dataIndex)!
+                }else{
+                    matchEntry = dataSet.entriesForXValue(xValue).first!
                 }
+                                let rowStackView = UIStackView()
+                                rowStackView.axis = .horizontal
+                                rowStackView.spacing = 4
+                                rowStackView.alignment = .center
+                
+                                let dotView = UIView()
+                                dotView.backgroundColor = dataSet.colors.first
+                                dotView.layer.cornerRadius = 3
+                                dotView.translatesAutoresizingMaskIntoConstraints = false
+                                NSLayoutConstraint.activate([
+                                    dotView.widthAnchor.constraint(equalToConstant: 6),
+                                    dotView.heightAnchor.constraint(equalToConstant: 6)
+                                ])
+                
+                                let label = UILabel()
+                                label.font = UIFont.boldSystemFont(ofSize: 11)
+                                label.textColor = UIColor(red: 38/255.0, green: 38/255.0, blue: 38/255.0, alpha: 1)
+                                label.text = "\(dataSet.label ?? "数据集 \(i)"): \(matchEntry.y)"
+                
+                                rowStackView.addArrangedSubview(dotView)
+                                rowStackView.addArrangedSubview(label)
+                
+                                stackView.addArrangedSubview(rowStackView)
             }
-            
+
         }
 
         // ✅ 更新 layout

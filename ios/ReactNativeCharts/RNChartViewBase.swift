@@ -46,7 +46,6 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
         let json = BridgeUtils.toJson(data)
 
         let extractedChartData: ChartData? = dataExtract.extract(json)
-
         guard let chartData = extractedChartData else { return }
 
         // https://github.com/danielgindi/Charts/issues/4690

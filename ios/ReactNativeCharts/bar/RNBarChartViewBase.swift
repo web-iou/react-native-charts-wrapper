@@ -12,7 +12,6 @@ class RNBarChartViewBase: RNBarLineChartViewBase {
             return chart as! BarChartView
         }
     }
-
     func setDrawValueAboveBar(_ enabled: Bool) {
         barChart.drawValueAboveBarEnabled = enabled
     }
