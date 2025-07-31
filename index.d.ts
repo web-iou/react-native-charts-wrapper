@@ -39,7 +39,11 @@ export type EasingType =
  * use `processColor` from `react-native` to generate the corresponding color value from a color (named, hex, rgba, etc.).
  */
 export type Color = ReturnType<typeof processColor>;
-
+export class BaseChart<T extends ViewProps> extends Component<T> {
+  fitScreen(): void;
+  moveViewToX(xValue: number): void;
+  highlights(config: Array<{ x: number; dataSetIndex?: number; dataIndex?: number; y?: number; stackIndex?: number }>): void;
+}
 export type ValueFormatter =
   | ("largeValue" | "percent" | "date")
   | string
@@ -445,8 +449,7 @@ export type ChartChangeEvent = NativeSyntheticEvent<{
 export interface LineChartProps extends BarLineChartBase {
   data: LineData;
 }
-export class LineChart extends Component<LineChartProps> {
-  fitScreen(): void;
+export class LineChart extends BaseChart<LineChartProps> {
 }
 
 export interface BarValue {
@@ -500,7 +503,7 @@ export interface BarChartProps extends BarLineChartBase {
   radius?: number;
   data: BarData;
 }
-export class BarChart extends Component<BarChartProps> {}
+export class BarChart extends BaseChart<BarChartProps> {}
 
 export interface BubbleValue {
   x?: number | undefined;
@@ -529,7 +532,7 @@ export interface BubbleChartProps extends BarLineChartBase {
   data?: BubbleData | undefined;
 }
 
-export class BubbleChart extends Component<BubbleChartProps> {}
+export class BubbleChart extends BaseChart<BubbleChartProps> {}
 
 export interface CandleStickValue {
   x?: number | undefined;
@@ -571,7 +574,7 @@ export interface CandleStickChartProps extends BarLineChartBase {
   data?: CandleStickData | undefined;
 }
 
-export class CandleStickChart extends Component<CandleStickChartProps> {}
+export class CandleStickChart extends BaseChart<CandleStickChartProps> {}
 
 export type PieValuePosition = "INSIDE_SLICE" | "OUTSIDE_SLICE";
 
@@ -638,7 +641,7 @@ export interface PieChartProps extends Omit<PieRadarChartBase, "onSelect"> {
   data?: PieData | undefined;
 }
 
-export class PieChart extends Component<PieChartProps> {}
+export class PieChart extends BaseChart<PieChartProps> {}
 
 export interface RadarDatasetConfig
   extends CommonDatasetConfig,
@@ -671,7 +674,7 @@ export interface RadarChartProps extends PieRadarChartBase {
   data?: RadarData | undefined;
 }
 
-export class RadarChart extends Component<RadarChartProps> {}
+export class RadarChart extends BaseChart<RadarChartProps> {}
 
 export interface ScatterDatasetConfig
   extends CommonDatasetConfig,
@@ -697,7 +700,7 @@ export interface ScatterChartProps extends BarLineChartBase {
   data?: ScatterData | undefined;
 }
 
-export class ScatterChart extends Component<ScatterChartProps> {}
+export class ScatterChart extends BaseChart<ScatterChartProps> {}
 
 export interface CombinedData {
   lineData?: LineData | undefined;
@@ -717,6 +720,6 @@ export interface CombinedChartProps extends BarLineChartBase {
   data?: CombinedData | undefined;
 }
 
-export class CombinedChart extends Component<CombinedChartProps> {}
+export class CombinedChart extends BaseChart<CombinedChartProps> {}
 
-export class HorizontalBarChart extends Component<BarChartProps> {}
+export class HorizontalBarChart extends BaseChart<BarChartProps> {}
