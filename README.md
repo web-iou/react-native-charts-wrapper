@@ -31,9 +31,9 @@ React Native Charts Wrapper is built on MPAndroidChart(v3.1.0) & Charts(v3.3.0),
 
 1. 安装依赖：
 ```bash
-npm install react-native-charts-wrapper
+npm install @see_you/react-native-charts-wrapper
 # 或者
-yarn add react-native-charts-wrapper
+yarn add @see_you/react-native-charts-wrapper
 ```
 
 2. 在您的 iOS 项目的 Podfile 中指定 DGCharts 的 git 源：
