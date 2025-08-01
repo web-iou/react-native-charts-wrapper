@@ -19,9 +19,12 @@ class BridgeUtils {
     }
 
     static func toJson(_ dict: NSDictionary) -> JSON {
-        let json = try! JSONSerialization.data(withJSONObject: dict);
-
-        return JSON.init(parseJSON: NSString(data: json, encoding: String.Encoding.utf8.rawValue)! as String);
+        guard JSONSerialization.isValidJSONObject(dict),
+              let data = try? JSONSerialization.data(withJSONObject: dict),
+              let jsonString = String(data: data, encoding: .utf8) else {
+            return JSON.null
+        }
+        return JSON(parseJSON: jsonString)
     }
 
     static func parseLineChartMode(_ mode: String) -> LineChartDataSet.Mode {
